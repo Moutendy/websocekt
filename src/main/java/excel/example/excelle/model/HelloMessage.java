@@ -21,4 +21,5 @@ public class HelloMessage {
 	@Column(name = "ID")
 	private Long id;
 	private String name;
+	private String statut;
 }

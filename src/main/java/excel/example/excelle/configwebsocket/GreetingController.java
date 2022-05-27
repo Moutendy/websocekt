@@ -27,7 +27,8 @@ public class GreetingController {
 	@GetMapping(value="/receptionmessage")
 	public List<HelloMessage> greet()
 	{
-		return messagerepository.findAll();
+		 String statut="nonlu";
+		return messagerepository.message(statut);
 	}
 	
 	
@@ -36,9 +37,11 @@ public class GreetingController {
 	@PostMapping(value="/envoimessage")
 	public void send(@RequestBody String nom)throws Exception  
 	{
+		String statut="lu";
 		HelloMessage message = new HelloMessage();
 		notificationService.sendGlobalNotification();
 		message.setName(nom);
+		message.setStatut(statut);
 		messagerepository.save(message);
 
 	}
