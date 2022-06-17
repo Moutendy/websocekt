@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ServerwebsocketApplication {
 
 	public static void main(String[] args) {
+	
 		SpringApplication.run(ServerwebsocketApplication.class, args);
 	}
 
