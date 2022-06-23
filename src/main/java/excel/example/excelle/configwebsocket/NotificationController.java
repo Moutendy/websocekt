@@ -22,14 +22,10 @@ public class NotificationController {
 	private SimpMessagingTemplate template;
 
 	@Scheduled(fixedRate = 1000)
-	public void countNotificationsUser() throws Exception {
+	public void countNotificationsUser() throws Exception  {
 		Personne user = new Personne();
-
 		user.setId(Long.valueOf(1));
 		this.template.convertAndSend("/topic/notifUser",
 				notificationRepository.countByDestinationPersonneAndIsReadByPersonne(user, false));
 	}
-	
-
-
 }

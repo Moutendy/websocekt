@@ -17,19 +17,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class HelloMessage {
+public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id; 
-	private String name;
-	private String statut;
+	
+	private String emetteur;
+	
+	private String message;
+	
 	@ManyToOne
 	@JoinColumn(name = "PERSONNE_ID", nullable = false, updatable = false)
 	private Personne destinationUser;
-	
-	@Column(name = "IS_READ_BY_USER")
-	private boolean isReadByUser = false;  
-
 }

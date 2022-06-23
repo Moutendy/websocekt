@@ -24,6 +24,7 @@ public class Personne {
 	 private String name;
 	 
 	 private Boolean genre;
+	 
 	 private int taille;
 
 

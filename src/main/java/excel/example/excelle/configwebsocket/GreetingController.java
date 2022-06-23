@@ -1,6 +1,5 @@
 package excel.example.excelle.configwebsocket;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,13 +9,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import excel.example.excelle.model.Customer;
-import excel.example.excelle.model.HelloMessage;
+import excel.example.excelle.model.Message;
 import excel.example.excelle.model.Notification;
 import excel.example.excelle.model.Personne;
 import excel.example.excelle.repositories.CustomerRepository;
@@ -29,6 +30,7 @@ public class GreetingController {
 
 	@Autowired
 	MessageRepository messagerepository;
+
 	
 	@Autowired
 	CustomerRepository customerRepository;
@@ -39,38 +41,45 @@ public class GreetingController {
 	INotificationRepository notif;
 	
 	@Autowired
-	NotificationService notificationService;
+	private  SimpMessagingTemplate messageTemple;
 	
-	@MessageMapping(value="/hello")
-	@SendTo("/topic/notifUser")
+	@Scheduled(fixedRate = 1000)
 	@GetMapping(value="/receptionmessage")
-	public List<HelloMessage> greet()
+	public void greet()throws Exception
 	{
-		 String statut="nonlu";
-		return messagerepository.message(statut);
+
+		messageTemple.convertAndSend("/topic/message",messagerepository.findAll());
 	}
 	
-	@Transactional
+	@Transactional 
 	@GetMapping(value="/lire")
 	public void greetlire(Long id)
 	{
 		 id=(long) 1;
 		 notif.updateNotifByUserId(id);
-	}
+	} 
 	
+ 
 
+	@SendTo("/topic/notifUser")
 	@PostMapping(value="/envoimessage")
-	public void send()throws Exception  
+	public void send(@RequestBody Message message)throws Exception  
 	{
 		Notification notification = new Notification();
+		
 		Personne persone= new Personne();
+		
 		
 		Long id=(long) 1;
 		persone.setId(id);
+		
 		notification.setDestinationPersonne(persone);
+		
 		notif.save(notification);
-	
-
+		
+		message.setDestinationUser(persone);
+		
+		messagerepository.save(message);
 	}
 	
 	
@@ -133,7 +142,7 @@ public double getlesPersonne()
 public List<String> gettriesPersonne()
 {
 	
-	   List<Personne> employeMasculins = new ArrayList<>();
+//	   List<Personne> employeMasculins = new ArrayList<>();
 //	   
 //	    for (Personne e : ipersonne.findAll()) {
 //	      if (e.getGenre() == true) {
