@@ -63,7 +63,11 @@ public class GreetingController {
 
 	@SendTo("/topic/notifUser")
 	@PostMapping(value="/envoimessage")
+<<<<<<< HEAD
 	public void send(@RequestBody Message message)throws Exception  
+=======
+	public void send(@RequestBody String custome)throws Exception  
+>>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
 	{
 		Notification notification = new Notification();
 		
@@ -76,10 +80,15 @@ public class GreetingController {
 		notification.setDestinationPersonne(persone);
 		
 		notif.save(notification);
+<<<<<<< HEAD
 		
 		message.setDestinationUser(persone);
 		
 		messagerepository.save(message);
+=======
+
+
+>>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
 	}
 	
 	
@@ -141,7 +150,11 @@ public double getlesPersonne()
 @GetMapping(value="/personnestre")
 public List<String> gettriesPersonne()
 {
+<<<<<<< HEAD
 	
+=======
+//	
+>>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
 //	   List<Personne> employeMasculins = new ArrayList<>();
 //	   
 //	    for (Personne e : ipersonne.findAll()) {
