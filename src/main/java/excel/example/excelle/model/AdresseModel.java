@@ -1,42 +1,35 @@
 package excel.example.excelle.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Entity
-@Table(name = "NOTIFICATIONS")
 @Data
+@Table(name="ADRESSE")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notification {
+@Entity
+public class AdresseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "ID_ADRESSE")
 	private Long id;
-
-
-	@Column(name = "CREATED_AT")
-	private Date createdAt;
-
-	@ManyToOne
-	@JoinColumn(name = "USER_ID", nullable = false, updatable = false)
-	private Personne destinationPersonne;
 	
-	@Column(name = "IS_READ_BY_USER")
-	private boolean isReadByPersonne = false;
+	@Column(name = "ADRESSE")
+	private String adresse;
+	
+	@Column(name = "VILLE")
+	private String ville;
+	
+	
+	@Column(name = "PAYS")
+	private String pays;
 }

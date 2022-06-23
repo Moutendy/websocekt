@@ -1,6 +1,5 @@
 package excel.example.excelle.configwebsocket;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,7 +59,7 @@ public class GreetingController {
 	
 
 	@PostMapping(value="/envoimessage")
-	public void send()throws Exception  
+	public void send(@RequestBody String custome)throws Exception  
 	{
 		Notification notification = new Notification();
 		Personne persone= new Personne();
@@ -69,7 +68,7 @@ public class GreetingController {
 		persone.setId(id);
 		notification.setDestinationPersonne(persone);
 		notif.save(notification);
-	
+
 
 	}
 	
@@ -132,8 +131,8 @@ public double getlesPersonne()
 @GetMapping(value="/personnestre")
 public List<String> gettriesPersonne()
 {
-	
-	   List<Personne> employeMasculins = new ArrayList<>();
+//	
+//	   List<Personne> employeMasculins = new ArrayList<>();
 //	   
 //	    for (Personne e : ipersonne.findAll()) {
 //	      if (e.getGenre() == true) {
