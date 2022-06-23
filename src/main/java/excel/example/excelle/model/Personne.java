@@ -32,11 +32,11 @@ public class Personne {
 	 
 	 private int taille;
 	  
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ID_ADRESSE") 
 	 private AdresseModel adressemodel;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ID_COMPTE")
 	private Compte compte;
   

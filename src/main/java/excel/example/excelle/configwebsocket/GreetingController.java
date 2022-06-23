@@ -1,4 +1,4 @@
-package excel.example.excelle.configwebsocket;
+ package excel.example.excelle.configwebsocket;
 
 import java.util.Comparator;
 import java.util.List;
@@ -28,8 +28,8 @@ import excel.example.excelle.repositories.MessageRepository;
 @RestController
 public class GreetingController {
 
-	@Autowired
-	MessageRepository messagerepository;
+//	@Autowired
+//	MessageRepository messagerepository;
 
 	
 	@Autowired
@@ -43,14 +43,14 @@ public class GreetingController {
 	@Autowired
 	private  SimpMessagingTemplate messageTemple;
 	
-	@Scheduled(fixedRate = 1000)
-	@GetMapping(value="/receptionmessage")
-	public void greet()throws Exception
-	{
-
-		messageTemple.convertAndSend("/topic/message",messagerepository.findAll());
-	}
-	
+//	@Scheduled(fixedRate = 1000)
+//	@GetMapping(value="/receptionmessage")
+//	public void greet()throws Exception
+//	{
+//
+//		messageTemple.convertAndSend("/topic/message",messagerepository.findAll());
+//	}
+//	
 	@Transactional 
 	@GetMapping(value="/lire")
 	public void greetlire(Long id)
@@ -58,16 +58,18 @@ public class GreetingController {
 		 id=(long) 1;
 		 notif.updateNotifByUserId(id);
 	} 
-	
+	  
  
 
 	@SendTo("/topic/notifUser")
 	@PostMapping(value="/envoimessage")
-<<<<<<< HEAD
+
 	public void send(@RequestBody Message message)throws Exception  
-=======
+	{
+//		messagerepository.save(message);
+	}
 	public void send(@RequestBody String custome)throws Exception  
->>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
+
 	{
 		Notification notification = new Notification();
 		
@@ -80,15 +82,12 @@ public class GreetingController {
 		notification.setDestinationPersonne(persone);
 		
 		notif.save(notification);
-<<<<<<< HEAD
+
 		
-		message.setDestinationUser(persone);
-		
-		messagerepository.save(message);
-=======
 
 
->>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
+
+
 	}
 	
 	
@@ -150,11 +149,7 @@ public double getlesPersonne()
 @GetMapping(value="/personnestre")
 public List<String> gettriesPersonne()
 {
-<<<<<<< HEAD
-	
-=======
-//	
->>>>>>> branch 'main' of https://github.com/Moutendy/websocekt.git
+
 //	   List<Personne> employeMasculins = new ArrayList<>();
 //	   
 //	    for (Personne e : ipersonne.findAll()) {

@@ -39,8 +39,6 @@ public class ApplicationController {
 	@PostMapping(value="/ajouterpersonne")
 	public void ajouterPersonne(@RequestBody Personne personne)throws Exception  
 	{
-		
-
 		ipersonne.save(personne);
 	}
 	

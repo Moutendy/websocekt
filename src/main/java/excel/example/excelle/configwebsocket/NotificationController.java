@@ -25,7 +25,8 @@ public class NotificationController {
 	public void countNotificationsUser() throws Exception  {
 		Personne user = new Personne();
 		user.setId(Long.valueOf(1));
-		this.template.convertAndSend("/topic/notifUser",
-				notificationRepository.countByDestinationPersonneAndIsReadByPersonne(user, false));
+//		this.template.convertAndSend("/topic/notifUser",
+//				notificationRepository.countByDestinationPersonneAndIsReadByPersonne(user, false));
+//	
 	}
 }

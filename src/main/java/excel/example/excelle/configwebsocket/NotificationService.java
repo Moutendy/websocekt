@@ -9,8 +9,8 @@ import excel.example.excelle.repositories.MessageRepository;
 @RestController
 @EnableScheduling
 public class NotificationService {
-	@Autowired
-	MessageRepository messageRepository;
+//	@Autowired
+//	MessageRepository messageRepository;
 	
 	
 	

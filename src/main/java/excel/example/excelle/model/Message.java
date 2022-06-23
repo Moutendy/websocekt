@@ -30,5 +30,9 @@ public class Message {
 	
 	@ManyToOne
 	@JoinColumn(name = "PERSONNE_ID", nullable = false, updatable = false)
-	private Personne destinationUser;
+	private Personne personne_id;
+	
+	
+	@Column(name = "IS_READ_BY_USER")
+	private boolean isReadByPersonne = false;
 }
