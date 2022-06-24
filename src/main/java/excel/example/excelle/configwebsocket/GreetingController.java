@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import excel.example.excelle.model.Customer;
-import excel.example.excelle.model.Message;
+
 import excel.example.excelle.model.Notification;
 import excel.example.excelle.model.Personne;
 import excel.example.excelle.repositories.CustomerRepository;
 import excel.example.excelle.repositories.INotificationRepository;
 import excel.example.excelle.repositories.IPersonneRepository;
-import excel.example.excelle.repositories.MessageRepository;
+
 
 @RestController
 public class GreetingController {
@@ -64,10 +64,10 @@ public class GreetingController {
 	@SendTo("/topic/notifUser")
 	@PostMapping(value="/envoimessage")
 
-	public void send(@RequestBody Message message)throws Exception  
-	{
-//		messagerepository.save(message);
-	}
+//	public void send(@RequestBody Message message)throws Exception  
+//	{
+////		messagerepository.save(message);
+//	}
 	public void send(@RequestBody String custome)throws Exception  
 
 	{

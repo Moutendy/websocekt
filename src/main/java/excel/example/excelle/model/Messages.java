@@ -1,30 +1,36 @@
 package excel.example.excelle.model;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Table(name="MESSAGE")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="COMPTE")
-@Data
-public class Compte {
-
+public class Messages {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_COMPTE")
-	public Long id;
+	@Column(name = "ID_MESSAGE")
+	private Long id;
 	
-	 private double solde;
-
+	private String message;
+	
+	private String emetteur;
+		@ManyToOne
+		@JoinColumn(name = "ID_PERSONNE") 
+    private Personne personne;
+		
+		private boolean statutmessage;
 }
