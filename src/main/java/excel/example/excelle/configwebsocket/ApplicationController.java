@@ -4,10 +4,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +44,17 @@ public class ApplicationController {
 	
 	@Autowired
 	IContactRepository icontact;
+	
+	
+	
+	@GetMapping(value="/afficherpersonne/{pays}")
+	public Collection<AdresseModel> afficherAdresseByPays(@PathVariable String pays)throws Exception  
+	{
+	return	iadresse.findByPays(pays);
+	}
+	
+
+
 	
 	@GetMapping(value="/afficherpersonne/{name}/{ville}/{solde}")
 	public Collection<Personne> afficherPersonne(@PathVariable String name,@PathVariable String ville,@PathVariable double solde)throws Exception  
@@ -134,5 +149,14 @@ System.out.println(ville);
 	List<Messages> messages(@PathVariable String prefix)
 	{
 		return imessagerepository.findByMessageStartingWith(prefix);
+	}
+
+	@Transactional
+	@PutMapping(value="/liremessage/{personneId}")
+	public void liremessages(@PathVariable Long personneId)
+	{
+	
+		
+		imessagerepository.updateNotifByUserId(personneId);
 	}
 }

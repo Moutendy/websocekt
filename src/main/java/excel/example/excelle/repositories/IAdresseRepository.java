@@ -17,4 +17,7 @@ public interface IAdresseRepository extends JpaRepository<AdresseModel, Long>{
 			+ "	FROM AdresseModel a WHERE a.pays=:pays")
 	public  Collection<AdresseModel> getAdresse(@Param("pays")String pays);
 	
+	
+	public Collection<AdresseModel>  findByPays(String pays);
+	
 }

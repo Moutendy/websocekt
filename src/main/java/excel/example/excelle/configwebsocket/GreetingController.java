@@ -4,20 +4,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import excel.example.excelle.model.Customer;
-
 import excel.example.excelle.model.Notification;
 import excel.example.excelle.model.Personne;
 import excel.example.excelle.repositories.CustomerRepository;
@@ -51,13 +46,13 @@ public class GreetingController {
 //		messageTemple.convertAndSend("/topic/message",messagerepository.findAll());
 //	}
 //	
-	@Transactional 
-	@GetMapping(value="/lire")
-	public void greetlire(Long id)
-	{
-		 id=(long) 1;
-		 notif.updateNotifByUserId(id);
-	} 
+//	@Transactional 
+//	@GetMapping(value="/lire")
+//	public void greetlire(Long id)
+//	{
+//		 id=(long) 1;
+//		 notif.updateNotifByUserId(id);
+//	} 
 	  
  
 

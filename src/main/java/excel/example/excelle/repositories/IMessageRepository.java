@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,20 @@ public interface IMessageRepository extends JpaRepository<Messages, Long>{
 	   
 	   public List<Messages> findByStatutmessage(boolean statutmessage);
 	   
+	   
+	   
+	   
 	   List<Messages> findByMessageStartingWith(String prefix);
+	   
+	 
+		
+		@Modifying
+		@Query(value = "update"
+				+ " MESSAGES m "
+				+ "set statutmessage = true "
+				+ "WHERE id_personne = :personneId", nativeQuery = true)
+		void updateNotifByUserId(@Param("personneId") Long personneId);
+	   
 }
 
 
